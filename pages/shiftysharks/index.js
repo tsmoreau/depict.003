@@ -61,8 +61,6 @@ export default function ShiftySharksMainPage() {
 
   const isConnected = typeof account === "string" && !!library;
 
-  console.log({ isConnected });
-
   useEffect(() => {
     const provider = new ethers.providers.JsonRpcProvider(
       "https://polygon-rpc.com/"
@@ -92,35 +90,8 @@ export default function ShiftySharksMainPage() {
 
     console.log("test");
     console.log(sold);
+    console.log({ isConnected });
   });
-
-  const html4 = `
-  <div class="App" style="text-align: center;">
-    <h1>html-react-parser</h1>
-    <p>
-      <a
-        href="https://github.com/remarkablemark/html-react-parser"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        View GitHub repository
-      </a>
-    </p>
-    <hr class="remove">
-  </div>
-`;
-
-  const options = {
-    replace: (domNode) => {
-      if (domNode.attribs && domNode.attribs.class === "remove") {
-        return <></>;
-      }
-    }
-  };
-
-  function App4() {
-    return parse(html4, options);
-  }
 
   const polygonLink = "https://polygonscan.com/address/" + sharkTokenAddress;
 
@@ -195,7 +166,7 @@ export default function ShiftySharksMainPage() {
                     </svg>
                   </button>
                 </a>
-                <a href="http://polygonscan.com">
+                <a href={polygonLink}>
                   <button
                     type="button"
                     className="mx-0.5 inline-flex text-base justify-center  transform translate-y-1 pt-2 font-bold  text-sm font-medium text-gray-500  border border-transparent rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-500"
@@ -427,7 +398,7 @@ export default function ShiftySharksMainPage() {
             </a>
           </li>
           <li className=" mx-1.5">
-            <a href="/blog" className="cursor-pointer">
+            <a href="" className="cursor-pointer">
               blog
             </a>
           </li>

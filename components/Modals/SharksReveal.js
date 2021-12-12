@@ -127,7 +127,7 @@ export default function MyModal() {
 
       loadSharkInfo();
     }
-  });
+  }, []);
 
   if (typeof window !== "undefined") {
     window.ethereum.on("accountsChanged", function (accounts) {

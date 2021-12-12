@@ -214,7 +214,7 @@ export default function ShiftySharksMainPage() {
             </a>
           </li>
           <li className=" mx-1.5">
-            <a href="/blog" className="cursor-pointer">
+            <a href="" className="cursor-pointer">
               blog
             </a>
           </li>
