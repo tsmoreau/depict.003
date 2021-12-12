@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Example",
+    "id": "1",
+    "date": "2021-11-01",
+    "author": "tsmoreau",
+    "body": "lorem ipsum"
+  },
+  {
+    "title": "Example 2",
+    "id": "2",
+    "body": "https://tailwindcss.com/docs/max-height eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer malesuada nunc vel risus. Egestas erat imperdiet sed euismod nisi porta. Eros donec ac odio tempor orci dapibus ultrices in. Aliquam sem fringilla ut morbi tincidunt. Habitant morbi tristique senectus et netus et malesuada fames. Cursus vitae congue mauris rhoncus aenean vel elit scelerisque mauris. Duis tristique sollicitudin nibh sit. Orci ac auctor augue mauris. Quis imperdiet massa tincidunt nunc pulvinar sapien. Id donec ultrices tincidunt arcu. Ante in nibh mauris cursus mattis. Fermentum odio eu feugiat pretium nibh ipsum consequat. Fames ac turpis egestas sed tempus urna et pharetra pharetra. Tincidunt ornare massa eget egestas purus."
+  },
+  {
+    "title": "Example 3",
+    "id": "3",
+    "body": "example-3.png"
+  },
+  {
+    "title": "Example 4",
+    "id": "4",
+    "body": "example-4.png"
+  }
+]
