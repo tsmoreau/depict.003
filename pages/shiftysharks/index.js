@@ -65,7 +65,7 @@ export default function ShiftySharksMainPage() {
 
   useEffect(() => {
     const provider = new ethers.providers.JsonRpcProvider(
-      "https://rpc-mumbai.maticvigil.com/v1/e6345d73074224afbdb82efbda0d99df0c9e3e1d"
+      "https://polygon-rpc.com/"
     );
     const signer = provider.getSigner();
     const TokenContract = new ethers.Contract(
@@ -122,8 +122,7 @@ export default function ShiftySharksMainPage() {
     return parse(html4, options);
   }
 
-  const polygonLink =
-    "https://mumbai.polygonscan.com/address/" + sharkTokenAddress;
+  const polygonLink = "https://polygonscan.com/address/" + sharkTokenAddress;
 
   return (
     <div className="text-black">

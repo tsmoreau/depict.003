@@ -80,14 +80,10 @@ export default function Home() {
     setError
   } = useWeb3React();
 
-  const polygonScan =
-    "https://mumbai.polygonscan.com/address/" + sharkTokenAddress;
+  const polygonScan = "https://polygonscan.com/address/" + sharkTokenAddress;
 
   const openSea =
-    "https://testnets.opensea.io/assets/mumbai/" +
-    sharkTokenAddress +
-    "/" +
-    router.query.id;
+    "https://opensea.io/assets/" + sharkTokenAddress + "/" + router.query.id;
 
   const url = "/shiftysharks/" + (parseInt(router.query.id, 10) - 1);
 
@@ -100,7 +96,7 @@ export default function Home() {
       /* create a generic provider and query for unsold market items */
 
       const provider2 = new ethers.providers.JsonRpcProvider(
-        "https://rpc-mumbai.maticvigil.com/v1/e6345d73074224afbdb82efbda0d99df0c9e3e1d"
+        "https://polygon-rpc.com/"
       );
 
       const TokenContract = new ethers.Contract(
@@ -383,8 +379,12 @@ export default function Home() {
     /* user will be prompted to pay the asking proces to complete the transaction */
     console.log("finalDNA");
 
+    let price = ethers.utils.parseEther("3.0");
+    console.log("price");
+    console.log(price);
+
     await contract
-      .setFinalDNA(router.query.id)
+      .setFinalDNA(router.query.id, { value: price })
       .then((tx) => {
         //action prior to transaction being mined
 
@@ -393,7 +393,7 @@ export default function Home() {
           toast("Set_Final_DNA Transaction Mined!");
           toast("Confirm Reveal_Shark Transaction.");
           contract
-            .revealShark(router.query.id)
+            .revealShark(router.query.id, { value: price })
             .then((tx) => {
               toast("Please Wait While Transaction is Mined...");
               provider.waitForTransaction(tx.hash).then(() => {

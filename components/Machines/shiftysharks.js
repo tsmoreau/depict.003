@@ -65,10 +65,14 @@ function Icon() {
     let meta2 = await contract.totalSupply();
     let meta3 = parseInt(meta2._hex, 16);
 
+    let price = ethers.utils.parseEther("3.0");
+    console.log("price");
+    console.log(price);
+
     console.log(meta3);
     let url = "/shiftysharks/" + meta3;
     await contract
-      .claimShark({ value: 0 })
+      .claimShark({ value: price })
       .then((tx) => {
         //action prior to transaction being mined
 

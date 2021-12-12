@@ -5,6 +5,7 @@ import { useWeb3React } from "@web3-react/core";
 import React, { useState, useEffect } from "react";
 import { sharkStorageAddress, sharkTokenAddress } from "../../config";
 import Storage from "../../abis/sharkStorage.json";
+import Token from "../../abis/sharkToken.json";
 import Nav from "../../components/Nav/Nav";
 
 import parse from "html-react-parser";
@@ -29,6 +30,7 @@ export default function App(props) {
     setError
   } = useWeb3React();
   const [sample, setSample] = useState(null);
+  const [bal, setBalance] = useState(null);
 
   async function getSharkSample() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -41,6 +43,12 @@ export default function App(props) {
       provider
     );
 
+    const TokenContract = new ethers.Contract(
+      sharkTokenAddress,
+      Token.abi,
+      provider
+    );
+
     let response = await StorageContract.getSharkSample();
 
     setSample(response);
@@ -49,6 +57,26 @@ export default function App(props) {
 
   function clearSample() {
     setSample(null);
+  }
+  useEffect(() => {
+    async function getCoins() {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+      let balance = await provider.getBalance("address");
+      setBalance(balance);
+    }
+    clearSample();
+  }, []);
+
+  function withdraw() {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const TokenContract = new ethers.Contract(
+      sharkTokenAddress,
+      Token.abi,
+      signer
+    );
+    TokenContract.withdrawCoins();
   }
 
   return (
@@ -62,7 +90,7 @@ export default function App(props) {
             Shifty Sharks Staging!
           </p>
           <button className="my-2 font-mono text-xs rounded  bg-gray-50 text-gray-800 px-3 py-1">
-            Storage Contract!!!: {sharkStorageAddress}
+            Storage Contract: {sharkStorageAddress}
           </button>
           {sample !== null ? (
             <div className="relative">
@@ -72,8 +100,20 @@ export default function App(props) {
               <img src={sample} className="w-96 h-96" />
             </div>
           ) : (
-            <div onClick={getSharkSample}>No Sample</div>
+            <div
+              className="mt-3 font-mono px-3 py-0.5 bg-gray-50 rounded-lg text-sm"
+              onClick={getSharkSample}
+            >
+              No Sample
+            </div>
           )}
+          <button
+            className="my-3 font-mono px-3 py-0.5 bg-gray-50 rounded-lg text-sm"
+            onClick={withdraw}
+          >
+            Withdraw
+          </button>
+          {bal}
           <div className="font-mono rounded-lg flex w-full justify-center flex-col">
             <p className="z-0  text-base items-center w-full flex justify-between mx-auto  rounded-xl my-1 py-1">
               <DropdownSVG />

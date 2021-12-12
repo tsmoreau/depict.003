@@ -166,9 +166,12 @@ export default function MyModal() {
     /* user will be prompted to pay the asking proces to complete the transaction */
     console.log("finalDNA");
     toast("⮑ Confirm Set_Final_DNA Transaction");
+    let price = ethers.utils.parseEther("3.0");
+    console.log("price");
+    console.log(price);
 
     await contract
-      .setFinalDNA(token)
+      .setFinalDNA(token, { value: price })
       .then((tx) => {
         //action prior to transaction being mined
 
@@ -177,7 +180,7 @@ export default function MyModal() {
           toast("⮑ Set_Final_DNA Transaction Mined");
           toast("⮑ Confirm Reveal_Shark Transaction");
           contract
-            .revealShark(token)
+            .revealShark(token, { value: price })
             .then((tx) => {
               toast("⮑ Please Wait While Transaction is Mined");
               provider.waitForTransaction(tx.hash).then(() => {
